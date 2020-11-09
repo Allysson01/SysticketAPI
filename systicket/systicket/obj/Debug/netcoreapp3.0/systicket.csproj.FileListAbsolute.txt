@@ -1,0 +1,5 @@
+D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp3.0\systicket.csprojAssemblyReference.cache
+D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp3.0\systicket.AssemblyInfoInputs.cache
+D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp3.0\systicket.AssemblyInfo.cs
+D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp3.0\systicket.csproj.CoreCompileInputs.cache
+D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp3.0\systicket.MvcApplicationPartsAssemblyInfo.cache
