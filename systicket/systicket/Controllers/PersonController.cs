@@ -51,8 +51,8 @@ namespace systicket.Controllers
 
                 if (date.Days == 0)
                 {
-                    if (oValidation.Validation(people.Validation, pass))
-                    {                        
+                    if (oValidation.VerificationKey(people.Validation, pass))
+                    {
                         dt.Clear();
                         string proc = "[dbo].[PersonResgistration]";
 
@@ -69,7 +69,7 @@ namespace systicket.Controllers
 
                         oValidaTicket.isValidDate = idPeople > 0;
 
-                        pass = oValidation.Validation(people.Password);
+                        pass = oValidation.ValidationKey(people.Password);
 
                         dtnParamns.Clear();
                         if (oValidaTicket.isValidDate)

@@ -24,26 +24,25 @@ namespace systicket.Controllers
         [Route("api/[controller]/login")]
         [HttpPost]
         public Authentication Login(Login login)
-        {
-            string Email = login.Email;
-            string Password = login.Password;
-
+        {  
             Authentication oAuth = new Authentication();
-            ValidationPassWord oValidation = new ValidationPassWord();
+
+            ValidationPassWord oValidation = new ValidationPassWord(login);
 
             Conexao oConex = new Conexao(configuration);
 
             string proc = "[dbo].[ReturnLogin]";
-            Dictionary<object, object> dtnParamns = new Dictionary<object, object>();
-
-            dtnParamns.Add("Email", Email);
+            Dictionary<object, object> dtnParamns = new Dictionary<object, object>
+            {
+                { "Email", login.Email }
+            };
 
             try
             {
                 DataTable dt = oConex.Get(proc, dtnParamns, CommandType.StoredProcedure);
-                var tt = dt.Rows.Count;
-                if (dt.Rows.Count > 0 && oValidation.Validation(Password.ToString(), dt.Rows[0][3].ToString()))
-                {
+
+                if (dt.Rows.Count > 0 && oValidation.ValidationPassword(login, dt.Rows[0][3].ToString()))
+                {   
                     #region Geração de key
                     Random rnd = new Random();
                     const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -57,7 +56,7 @@ namespace systicket.Controllers
 
                     dtnParamns = new Dictionary<object, object>();
                     string key = new String(stringChars);
-                    string keyDb = oValidation.Validation(key);
+                    string keyDb = oValidation.ValidationKey(key);
                     string Qry = string.Format(@"SELECT [AccessKey] FROM [SysticketDb].[dbo].[Users] WHERE personId = {0}", Convert.ToInt32(dt.Rows[0][0]));
                     var Quant = oConex.Get(Qry, dtnParamns, CommandType.Text);
 
@@ -78,7 +77,7 @@ namespace systicket.Controllers
                         oAuth.Id = Convert.ToInt32(inRow["Id"]);
                         oAuth.Name = partsName[0].ToString() + " " + sName;
                         oAuth.isManager = Convert.ToBoolean(inRow["isManager"]);
-                        oAuth.Validation = oAuth.Id > 0 && oAuth.Name != null ? true : false;
+                        oAuth.Validation = oAuth.Id > 0 && oAuth.Name != null;
                         oAuth.key = key;
                     }
 
@@ -88,7 +87,7 @@ namespace systicket.Controllers
                     oAuth.Validation = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

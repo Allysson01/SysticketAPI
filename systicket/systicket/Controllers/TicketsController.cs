@@ -23,21 +23,40 @@ namespace systicket.Controllers
         [Route("api/[controller]/ticketget")]
         [EnableCors("postSysticket")]
         [HttpPost]
-        public List<Ticket> TicketGet(Person person)
+        public List<Ticket> TicketGet(TicketListing listing)
         {
             Conexao oConex = new Conexao(configuration);
-            string proc = string.IsNullOrEmpty(person.search) ? "[ReturnTicket]" : "[ReturnTicketFilter]";
-            Dictionary<object, object> dtnParamns = new Dictionary<object, object>();
 
-            dtnParamns.Add("PERSONID", person.Id);
-            if (!string.IsNullOrEmpty(person.search))
-                dtnParamns.Add("ID", person.search);
+            int pageSize = 10;
+            int totalRecord = 0;
+            if (listing.Page < 1) listing.Page = 1;
+            int skip = (listing.Page * pageSize) - pageSize;
+             
+            string Filter = !string.IsNullOrWhiteSpace(listing.Search.ToString()) ? "and tp.FullName like '%" + listing .Search + "%' or tt.Topic like '%" + listing.Search + "%' or pt.priorits like '%" + listing.Search + "%' or tt.[Description] like '%" + listing.Search + "%'" : "";
+
+            string Query = string.Format(@"
+                                            SELECT                                        
+                                            tt.Id as Ticket,
+                                        	tp.FullName as Tipo,
+                                        	tt.Topic as Assunto,
+                                        	pt.priorits as Prioridade,
+                                        	tt.RequestDate as Data_Solicitacao,
+                                        	tt.answered as Atendido,
+                                        	tt.[Description] as Descricao
+                                        
+                                            FROM dbo.Tickets tt
+                                        inner join dbo.prioritys pt on tt.Priority = pt.id
+                                        inner join dbo.TypeTickets tp on tp.id = tt.TypeTicket
+                                        inner join dbo.Person pp on pp.Id = tt.PersonId
+                                        where pp.Id = {0} {1}", listing.PersonId, Filter);
+
+            Dictionary<object, object> dtnParamns = new Dictionary<object, object>();          
 
             List<Ticket> lstTicket = new List<Ticket>();
 
             try
             {
-                DataTable dt = oConex.Get(proc, dtnParamns, CommandType.StoredProcedure);
+                DataTable dt = oConex.Get(Query, dtnParamns, CommandType.Text);
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -129,7 +148,7 @@ namespace systicket.Controllers
 
                 if (date.Days == 0)
                 {
-                    if (oValidation.Validation(ticket.Validation, pass))
+                    if (oValidation.VerificationKey(ticket.Validation, pass))
                     {
                         dt.Clear();
                         string proc = "[dbo].[GeraTicket]";
@@ -142,7 +161,7 @@ namespace systicket.Controllers
 
                         dt = oConex.Post(proc, dtnParamns, CommandType.StoredProcedure);
                         idTicket = Convert.ToInt32(dt.Rows[0][0]);
-                        oValidaTicket.isValidDate = idTicket > 0 ? true : false;
+                        oValidaTicket.isValidDate = idTicket > 0;
                         dtnParamns.Clear();
 
                         var localizacaoArquivo = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Imgs";
@@ -169,11 +188,8 @@ namespace systicket.Controllers
                         }
                     }
                 }
-
-                
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;

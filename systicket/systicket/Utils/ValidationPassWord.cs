@@ -1,31 +1,49 @@
 ﻿using System;
 using System.Text;
+using systicket.Models;
 
 namespace systicket.Controllers
 {
     public class ValidationPassWord
     {
-        string passwordApi = string.Empty;
-        string passwordBco = string.Empty;
+        private string passwordApi = string.Empty;
+        private string passwordBco = string.Empty;
+        private Login login;
+
+        public ValidationPassWord(Login login)
+        {
+            this.login = login;
+        }
+
         public ValidationPassWord(){}
 
         #region Constructor
-        public bool Validation(string password1, string password2)
+
+        public bool ValidationPassword(Login login, string password2)
         {
-            passwordApi = password1;
+            this.login = login;
+            passwordApi = login.Password;
             passwordBco = password2;
-            return isValid();
+            return IsValid();
         }
 
-        public string Validation(string key)
+        public bool VerificationKey(string password, string password2)
         {
-            passwordApi = key;           
-            return incriptKey();
+            passwordApi = password;
+            passwordBco = password2;
+            return IsValid();
         }
+
+        public string ValidationKey(string key)
+        {
+            passwordApi = key;
+            return IncriptKey();
+        }
+
         #endregion Constructor
 
         #region Valida Password
-        bool isValid()
+        private bool IsValid()
         {
             string Pass = "";
             for (int i = 0; i < passwordApi.Length; i++)
@@ -33,14 +51,14 @@ namespace systicket.Controllers
                 Pass += Incript(passwordApi[i].ToString().ToUpper());
             }
 
-            var code = Encoding.Unicode.GetBytes(Pass ?? "");           
+            var code = Encoding.Unicode.GetBytes(Pass ?? "");
 
             var PassIncrip = Convert.ToBase64String(code);
 
-            return passwordBco == PassIncrip ? true:false;
+            return passwordBco == PassIncrip;
         }
 
-        string incriptKey()
+        private string IncriptKey()
         {
             string Pass = "";
             for (int i = 0; i < passwordApi.Length; i++)
@@ -60,116 +78,45 @@ namespace systicket.Controllers
         #region Chage Caracter
         string Incript(string p)
         {
-            string unic;
-
-            switch (p)
+            string unic = p switch
             {
-                case "A":
-                     unic = "L";
-                    break;
-                case "B":
-                     unic = "C";
-                    break;
-                case "C":
-                     unic = "J";
-                    break;
-                case "D":
-                     unic = "N";
-                    break;
-                case "E":
-                     unic = "F";
-                    break;
-                case "F":
-                     unic = "K";
-                    break;
-                case "G":
-                     unic = "A";
-                    break;
-                case "H":
-                     unic = "P";
-                    break;
-                case "I":
-                     unic = "E";
-                    break;
-                case "J":
-                     unic = "M";
-                    break;
-                case "K":
-                     unic = "I";
-                    break;
-                case "L":
-                     unic = "O";
-                    break;
-                case "M":
-                     unic = "T";
-                    break;
-                case "N":
-                     unic = "B";
-                    break;
-                case "O":
-                     unic = "V";
-                    break;
-                case "P":
-                     unic = "H";
-                    break;
-                case "Q":
-                     unic = "U";
-                    break;
-                case "R":
-                     unic = "D";
-                    break;
-                case "S":
-                     unic = "Q";
-                    break;
-                case "T":
-                     unic = "X";
-                    break;
-                case "U":
-                     unic = "R";
-                    break;
-                case "V":
-                     unic = "G";
-                    break;
-                case "X":
-                     unic = "Z";
-                    break;
-                case "Z":
-                     unic = "S";
-                    break;
-                case "0":
-                    unic = "1";
-                    break;
-                case "1":
-                     unic = "2";
-                    break;
-                case "2":
-                     unic = "3";
-                    break;
-                case "3":
-                    unic = "4";
-                    break;
-                case "4":
-                    unic = "5";
-                    break;
-                case "5":
-                    unic = "6";
-                    break;
-                case "6":
-                    unic = "7";
-                    break;
-                case "7":
-                    unic = "8";
-                    break;
-                case "8":
-                    unic = "9";
-                    break;
-                case "9":
-                    unic = "0";
-                    break;
-                default:
-                    unic = "";
-                    break;
-            }
+                "A" => "L",
+                "B" => "C",
+                "C" => "J",
+                "D" => "N",
+                "E" => "F",
+                "F" => "K",
+                "G" => "A",
+                "H" => "P",
+                "I" => "E",
+                "J" => "M",
+                "K" => "I",
+                "L" => "O",
+                "M" => "T",
+                "N" => "B",
+                "O" => "V",
+                "P" => "H",
+                "Q" => "U",
+                "R" => "D",
+                "S" => "Q",
+                "T" => "X",
+                "U" => "R",
+                "V" => "G",
+                "X" => "Z",
+                "Y" => "&",
+                "Z" => "S",
+                "0" => "1",
+                "1" => "2",
+                "2" => "3",
+                "3" => "4",
+                "4" => "5",
+                "5" => "6",
+                "6" => "7",
+                "7" => "8",
+                "8" => "9",
+                "9" => "0",
+                _ => "",
+            };
             return unic;
         }
 
