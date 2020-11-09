@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\systicket.csproj": {}
+    "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\systicket.csproj": {
+    "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\systicket.csproj",
+        "projectUniqueName": "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj",
         "projectName": "systicket",
-        "projectPath": "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\systicket.csproj",
+        "projectPath": "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj",
         "packagesPath": "C:\\Users\\bru_n\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\obj\\",
+        "outputPath": "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

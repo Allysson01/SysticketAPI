@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xjOBi/6QIvDkOu+RL8ro+EDLLmwILXKfsNHRSs0pyNn7kyMQoq9lZczi8t81Ksa3RbTpinlTlCw2d/eNLNio/Q==",
+  "dgSpecHash": "aa6YcMTriq1LzerAPqE1skHbk1t0NQWGEOyuKu/fFLUr4HmRBosVD9JSO/98HOWOxhYlrv8jmbT67N6XbdrlHw==",
   "success": true,
-  "projectFilePath": "D:\\Projetos\\SYSTICKET\\systicketBack\\api\\systicket\\systicket\\systicket.csproj",
+  "projectFilePath": "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.7\\microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
     "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.extensions.options\\3.1.7\\microsoft.extensions.options.3.1.7.nupkg.sha512",
