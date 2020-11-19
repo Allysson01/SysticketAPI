@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using JWT.Algorithms;
+using JWT.Builder;
+using JWT.Exceptions;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -24,7 +27,7 @@ namespace systicket.Controllers
         [Route("api/[controller]/login")]
         [HttpPost]
         public Authentication Login(Login login)
-        {  
+        {
             Authentication oAuth = new Authentication();
 
             ValidationPassWord oValidation = new ValidationPassWord(login);
@@ -42,7 +45,7 @@ namespace systicket.Controllers
                 DataTable dt = oConex.Get(proc, dtnParamns, CommandType.StoredProcedure);
 
                 if (dt.Rows.Count > 0 && oValidation.ValidationPassword(login, dt.Rows[0][3].ToString()))
-                {   
+                {
                     #region Geração de key
                     Random rnd = new Random();
                     const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -91,6 +94,43 @@ namespace systicket.Controllers
             {
                 throw;
             }
+
+            #region Teste inicialização com JWT 
+            //const string secret = "GQDstcKsx0NHjPOuXOYg5MbeJ1XT0uFiwDVvVBrk";
+
+            //var token = new JwtBuilder()
+            //     .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
+            //     .WithSecret(secret)
+            //     .AddClaim("exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds())
+            //     .AddClaim("sub", "claim1-value")
+            //     .AddClaim("iss", "claim2-value")
+            //     .AddClaim("aud", "claim3-value")
+            //     .Encode();
+
+            //var pp = token;
+            //#endregion
+            //#region parsing token
+            //try
+            //{
+            //    var json = new JwtBuilder()
+            //        .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
+            //              .WithSecret(secret)
+            //              .MustVerifySignature()
+            //              .Decode(token);
+            //    var tt = json;
+            //}
+            //catch (TokenExpiredException)
+            //{
+            //    throw;
+            //}
+            //catch (SignatureVerificationException)
+            //{
+            //    throw;
+            //}
+
+            #endregion
+
+
 
             return oAuth;
         }

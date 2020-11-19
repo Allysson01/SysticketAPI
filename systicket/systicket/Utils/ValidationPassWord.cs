@@ -8,7 +8,7 @@ namespace systicket.Controllers
     {
         private string passwordApi = string.Empty;
         private string passwordBco = string.Empty;
-        private Login login;
+        public Login login;
 
         public ValidationPassWord(Login login)
         {

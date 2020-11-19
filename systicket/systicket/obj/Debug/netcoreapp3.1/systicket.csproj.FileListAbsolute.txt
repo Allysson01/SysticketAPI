@@ -31,8 +31,6 @@ D:\Projetos\SYSTICKET\systicketBack\api\systicket\systicket\obj\Debug\netcoreapp
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.csprojAssemblyReference.cache
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.AssemblyInfoInputs.cache
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.AssemblyInfo.cs
-C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.csproj.CoreCompileInputs.cache
-C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.dll
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.pdb
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\bin\Debug\netcoreapp3.1\appsettings.Development.json
@@ -58,3 +56,7 @@ C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netco
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\staticwebassets\systicket.StaticWebAssets.Manifest.cache
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\staticwebassets\systicket.StaticWebAssets.xml
 C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.genruntimeconfig.cache
+C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\bin\Debug\netcoreapp3.1\JWT.dll
+C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.csproj.CoreCompileInputs.cache
+C:\Users\bru_n\Documents\GitHub\SysticketAPI\systicket\systicket\obj\Debug\netcoreapp3.1\systicket.MvcApplicationPartsAssemblyInfo.cache
