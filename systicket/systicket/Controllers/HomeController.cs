@@ -2,8 +2,7 @@
 
 namespace systicket.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [ApiController]    
     public class HomeController : ControllerBase
     { 
         public HomeController()
@@ -11,6 +10,9 @@ namespace systicket.Controllers
         }
 
         [HttpGet]
+        [Route("")]
+        [Route("api/[controller]")]
+        [Route("api/[controller]/teste")]
         public string HomeIndex()
         {
             return "API Systicket pronta e rodando..";

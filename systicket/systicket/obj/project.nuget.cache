@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ikvne5lzXO6W5cwrtnnotnquAQ58z95sHXta1Wg+Zz13/jqQdMVUuN6lNVaujU645zraxqONjHh3ZOLau4Pr6A==",
+  "dgSpecHash": "9XzcgYtxPSuFaSUGPCyiM4eRg0dCZtcdinmqzxLSCfre3WCSJletmgYtEB4FKpbYennC21os7+3m4H04dygZGQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\bru_n\\Documents\\GitHub\\SysticketAPI\\systicket\\systicket\\systicket.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.7\\microsoft.extensions.primitives.3.1.7.nupkg.sha512",
     "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
     "C:\\Users\\bru_n\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

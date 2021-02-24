@@ -2,6 +2,7 @@
 using JWT.Builder;
 using JWT.Exceptions;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -17,6 +18,7 @@ namespace systicket.Controllers
     {
         private readonly IConfiguration configuration;
 
+
         public AuthenController(IConfiguration config)
         {
             this.configuration = config;
@@ -26,7 +28,7 @@ namespace systicket.Controllers
         [EnableCors("postSysticket")]
         [Route("api/[controller]/login")]
         [HttpPost]
-        public Authentication Login(Login login)
+        public IActionResult Login(Login login)
         {
             Authentication oAuth = new Authentication();
 
@@ -60,15 +62,49 @@ namespace systicket.Controllers
                     dtnParamns = new Dictionary<object, object>();
                     string key = new String(stringChars);
                     string keyDb = oValidation.ValidationKey(key);
-                    string Qry = string.Format(@"SELECT [AccessKey] FROM [SysticketDb].[dbo].[Users] WHERE personId = {0}", Convert.ToInt32(dt.Rows[0][0]));
-                    var Quant = oConex.Get(Qry, dtnParamns, CommandType.Text);
 
-                    if (Quant.Rows.Count == 1)
-                        Qry = string.Format(@"UPDATE dbo.Users SET [AccessKey] = '{0}',[dtAcess] = '{2}' WHERE [personId] = {1}", keyDb, Convert.ToInt32(dt.Rows[0][0]), DateTime.Now);
-                    else
-                        Qry = string.Format(@"INSERT INTO dbo.Users (AccessKey, personId, dtAcess) VALUES ('{0}', {1}, '{2}')", keyDb, Convert.ToInt32(dt.Rows[0][0]), DateTime.Now);
 
-                    oConex.Post(Qry, dtnParamns, CommandType.Text);
+                    #region Inicialização com JWT 
+                    Token getToken = new Token();
+
+
+                    string token = string.Empty;
+                    string cookie = string.Empty;
+
+                    if (Request.Cookies.ContainsKey("authO"))
+                    {
+                        cookie = Request.Cookies["authO"].ToString();
+                    }
+
+                    token = getToken.GenerationToken(dt.Rows[0]["FullName"].ToString());
+
+                    DateTimeOffset Expiration = DateTimeOffset.Now.AddMinutes(30);
+
+                    CookieOptions cookieOptions = new CookieOptions
+                    {
+                        Secure = true,
+
+                        HttpOnly = true,
+
+                        SameSite = SameSiteMode.None,
+
+                        Expires = Expiration
+                    };
+
+                    Response.Cookies.Append("authO", token, cookieOptions);
+
+                    #endregion
+
+                    //string Qry = string.Format(@"SELECT [AccessKey] FROM [SysticketDb].[dbo].[Users] WHERE personId = {0}", Convert.ToInt32(dt.Rows[0][0]));
+                    //var Quant = oConex.Get(Qry, dtnParamns, CommandType.Text);
+
+                    //if (Quant.Rows.Count == 1)
+                    //    Qry = string.Format(@"UPDATE dbo.Users SET [AccessKey] = '{0}',[dtAcess] = '{2}' WHERE [personId] = {1}", keyDb, Convert.ToInt32(dt.Rows[0][0]), DateTime.Now);
+                    //else
+                    //    Qry = string.Format(@"INSERT INTO dbo.Users (AccessKey, personId, dtAcess) VALUES ('{0}', {1}, '{2}')", keyDb, Convert.ToInt32(dt.Rows[0][0]), DateTime.Now);
+
+                    //oConex.Post(Qry, dtnParamns, CommandType.Text);
+
                     #endregion
 
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -90,7 +126,7 @@ namespace systicket.Controllers
                     oAuth.Validation = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -130,9 +166,7 @@ namespace systicket.Controllers
 
             #endregion
 
-
-
-            return oAuth;
+            return Ok(oAuth);
         }
         #endregion
     }

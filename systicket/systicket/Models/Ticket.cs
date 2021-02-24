@@ -108,7 +108,7 @@ namespace systicket.Models
             lstTicket = lstTicket.OrderBy(o => o.Prioridade).ToList();
 
             if (skip > 0)
-                lstTicket = lstTicket.Skip(skip).Take(50).ToList();
+                lstTicket = lstTicket.Skip(skip).Take(skip).ToList();
             else
                 lstTicket = lstTicket.Take(pageSize).ToList();
 

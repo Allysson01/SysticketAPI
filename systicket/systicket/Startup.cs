@@ -23,29 +23,30 @@ namespace systicket
                 options.AddPolicy("getSysticket",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000").WithMethods("GET").AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:3000").WithMethods("GET").AllowCredentials().AllowAnyHeader();
                     });
 
                 options.AddPolicy("postSysticket",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000").WithMethods("POST").AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:3000").WithMethods("POST").AllowCredentials().AllowAnyHeader();
                     });
 
                 options.AddPolicy("changeTicket",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000").WithMethods("PUT").AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:3000").WithMethods("PUT").AllowCredentials().AllowAnyHeader();
                     });
 
                 options.AddPolicy("deleteTicket",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000").WithMethods("DELETE").AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:3000").WithMethods("DELETE").AllowCredentials().AllowAnyHeader();
                     });
             });
 
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllersWithViews();
         }
 
         // Este método é chamado pelo tempo de execução. Use este método para configurar o pipeline de solicitação HTTP.
@@ -56,7 +57,6 @@ namespace systicket
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -64,7 +64,7 @@ namespace systicket
             app.UseCors();
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
