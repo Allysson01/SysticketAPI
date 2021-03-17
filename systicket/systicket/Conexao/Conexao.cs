@@ -16,8 +16,7 @@ namespace systicket.Controllers
 
         /*
             Atenção ao modificar métodos dessa classe, eles são genericos;
-        */
-        
+        */        
 
         #region GET
         public DataTable Get(string sQuery, IDictionary<object, object> paramns, CommandType cmt)

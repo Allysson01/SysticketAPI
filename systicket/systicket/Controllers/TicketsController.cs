@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using systicket.Models;
 
 namespace systicket.Controllers
@@ -24,7 +24,8 @@ namespace systicket.Controllers
         [Route("api/[controller]/ticketget")]
         [EnableCors("postSysticket")]
         [HttpPost]
-        public List<Ticket> TicketGet(TicketListing listing)
+        [Authorize(Roles = "Manager")]
+        public List<Ticket> TicketGet([FromBody]TicketListing listing)
         {
             int pageSize = 6;
             if (listing.Page < 1) listing.Page = 1;

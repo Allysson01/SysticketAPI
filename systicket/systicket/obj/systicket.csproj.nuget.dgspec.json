@@ -41,9 +41,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "JWT": {
+            "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
-              "version": "[7.3.0, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.13, )"
             },
             "Microsoft.Extensions.Options": {
               "target": "Package",
